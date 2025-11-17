@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Ong Corrente do Bem</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body> <header>
+    <div class="caixa-destaque">
+        <picture>
+            <source srcset="Imagens/logo.webp" type="image/webp">
+            <img src="Imagens/logo.png" alt="Logo da Ong Corrente do Bem" width="200" height="200">
+        </picture>
+        <button id="btn-hamburger" aria-controls="nav-menu" aria-expanded="false" aria-label="Abrir menu de navegação">
+            <span class="linha"></span>
+            <span class="linha"></span>
+            <span class="linha"></span>
+        </button>
+        <nav id="nav-menu" aria-hidden="true">
+            <button id="btn-fechar" aria-label="Fechar menu de navegação">&times;</button>
+            <ul>
+                <li><a href="index.html" class="nav-link-spa">Inicio</a></li>
+                
+                <li>
+                    <a href="Projetos.html" class="nav-link-spa" aria-haspopup="true" aria-expanded="false">Projetos</a>
+                    <span class="seta-dropdown" aria-hidden="true">▼</span> 
+                    <ul class="submenu" aria-hidden="true">
+                        <li><a href="Projetos.html#educacao">Educação</a></li>
+                        <li><a href="Projetos.html#cozinha">Cozinha</a></li>
+                        <li><a href="Projetos.html#capacitacao">Capacitação</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="cadastro.html" class="nav-link-spa">Cadastro</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <section class="caixa-destaque">
+                    <h2>Formulário de Cadastro</h2>
+                </section>
+            </div>
+        </div>
+
+        <form action="submit_form.php" method="post" id="form-cadastro" novalidate>
+            <div class="row">
+
+                <div class="col-12 col-lg-7">
+                    <fieldset class="caixa-destaque">
+                        <legend><h3>Dados pessoais</h3></legend>
+                        
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" name="nome" required aria-required="true">
+                        <span class="error-message" id="error-nome" role="alert"></span>
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required aria-required="true">
+                        <span class="error-message" id="error-email" role="alert"></span>
+
+                        <label for="telefone">Telefone:</label>
+                        <input type="tel" id="telefone" name="telefone" required aria-required="true">
+                        <span class="error-message" id="error-telefone" role="alert"></span>
+
+                        <label for="nascimento">Data de Nascimento:</label>
+                        <input type="date" id="nascimento" name="nascimento" required aria-required="true">
+                        <span class="error-message" id="error-nascimento" role="alert"></span>
+
+                        <label for="cpf">CPF :</label>
+                        <input type="text" id="cpf" name="cpf" required aria-required="true" placeholder="123.456.789-00">
+                        <span class="error-message" id="error-cpf" role="alert"></span>
+
+                        <label for="doacao">Valor da Doação R$:</label>
+                        <input type="number" id="doacao" name="doacao" step="0.01" min="0" required aria-required="true">
+                        <span class="error-message" id="error-doacao" role="alert"></span>
+
+                        <label for="tipo_doacao">Tipo de Doação:</label>
+                        <select name="tipo_doacao" id="tipo_doacao" required aria-required="true">
+                            <option value="" disabled selected>Escolha o tipo de doação</option>
+                            <option value="dinheiro">Dinheiro</option>
+                            <option value="alimentos">Alimentos</option>
+                            <option value="roupas">Roupas</option>
+                            <option value="voluntariado">Voluntariado</option>
+                        </select>
+                        <span class="error-message" id="error-tipo_doacao" role="alert"></span>
+                    </fieldset>
+                </div>
+
+                <div class="col-12 col-lg-5">
+                    <fieldset class="caixa-destaque">
+                        <legend><h3>Endereço</h3></legend>
+                        <label for="cep">CEP:</label>
+                        <input type="text" id="cep" name="cep" required aria-required="true">
+                        <span class="error-message" id="error-cep" role="alert"></span>
+
+                        <label for="endereco">Endereço:</label>
+                        <input type="text" id="endereco" name="endereco" required aria-required="true">
+                        <span class="error-message" id="error-endereco" role="alert"></span>
+
+                        <label for="cidade">Cidade:</label>
+                        <input type="text" id="cidade" name="cidade" required aria-required="true">
+                        <span class="error-message" id="error-cidade" role="alert"></span>
+
+                        <label for="estado">Estado:</label>
+                        <input type="text" id="estado" name="estado" required aria-required="true">
+                        <span class="error-message" id="error-estado" role="alert"></span>
+                    </fieldset>
+                    
+                    <section class="caixa-destaque">
+                        <h3>Enviar</h3>
+                        <input type="submit" value="Enviar Cadastro">
+                    </section>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 Ong Corrente do Bem. Todos os direitos reservados.</p>
+        <h5> Feito por Gabriel Alves </h5>
+    </div>
+</footer>
+
+<script src="Launch.js"></script>
+</body>
+</html>

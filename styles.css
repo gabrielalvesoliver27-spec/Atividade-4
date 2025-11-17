@@ -1,0 +1,592 @@
+/* --- ETAPA 1: O DESIGN SYSTEM --- */
+:root {
+    /* 1. Paleta de Cores (Modo Claro) */
+    --cor-primaria: #0771db;      
+    --cor-secundaria: #E60000;   /* CORRIGIDO: Era #f70101 (Contraste 3.73:1), Agora 4.52:1 */
+    --cor-fundo: #f4f4f4;         
+    --cor-superficie: #ffffff;   
+    --cor-texto-principal: #333333; 
+    --cor-texto-secundario: #777777; /* Mantido para uso futuro, mas não no footer */
+    --cor-borda: #cccccc;         
+    --cor-branco-puro: #ffffff;   
+    --cor-validacao-sucesso: #28a745; 
+    --cor-validacao-erro: #dc3545; 
+    --cor-info: #17a2b8;
+
+    /* Cores para o Modo Escuro */
+    --cor-fundo-dark: #121212;
+    --cor-superficie-dark: #1E1E1E;
+    --cor-texto-principal-dark: #E0E0E0;
+    --cor-texto-secundario-dark: #A0A0A0;
+    --cor-borda-dark: #444444;
+
+    /* ... (resto das variáveis ... */
+    --fonte-tam-h1: 2.25rem; 
+    --fonte-tam-h2: 1.75rem; 
+    --fonte-tam-h3: 1.25rem; 
+    --fonte-tam-base: 1rem;   
+    --fonte-tam-pequena: 0.875rem; 
+
+    --espaco-pp: 0.5rem;   
+    --espaco-p: 1rem;    
+    --espaco-m: 1.5rem;  
+    --espaco-g: 2rem;    
+    --espaco-gg: 3rem;   
+    --espaco-xg: 4rem;   
+
+    --raio-borda: var(--espaco-pp); 
+    --sombra-card: 0 4px 8px rgba(0,0,0,0.1);
+    --transicao-rapida: 0.3s ease;
+}
+
+/* --- MODO ESCURO (NOVO) --- */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --cor-fundo: var(--cor-fundo-dark);
+        --cor-superficie: var(--cor-superficie-dark);
+        --cor-texto-principal: var(--cor-texto-principal-dark);
+        --cor-texto-secundario: var(--cor-texto-secundario-dark);
+        --cor-borda: var(--cor-borda-dark);
+        --sombra-card: 0 4px 8px rgba(0,0,0,0.4);
+    }
+    
+    /* Ajustes finos para o modo escuro */
+    .Banner img {
+        filter: brightness(0.8); /* Escurece levemente o banner */
+    }
+
+    /* Ajusta o menu de desktop (o mobile já é escuro) */
+    @media (min-width: 768px) {
+        #nav-menu li a {
+            color: var(--cor-primaria);
+        }
+        #nav-menu li a:hover {
+            background-color: var(--cor-superficie);
+        }
+    }
+
+    .alert-info {
+        color: #d1ecf1;
+        background-color: #2a5a64; /* Cor de fundo mais escura */
+        border-color: #17a2b8;
+    }
+}
+
+
+/* --- Estilos Gerais (Reset e Body) --- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    font-size: var(--fonte-tam-base);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* ... (h1, h2, h3, p, ul - sem mudanças) ... */
+
+h1, h2, h3 { color: var(--cor-texto-principal); } /* Garante o contraste no modo escuro */
+h1 { font-size: var(--fonte-tam-h1); text-align: center; margin-bottom: var(--espaco-m); }
+h2 { font-size: var(--fonte-tam-h2); text-align: center; margin-bottom: var(--espaco-m); }
+h3 { font-size: var(--fonte-tam-h3); text-align: center; margin-bottom: var(--espaco-p); }
+p { padding: 0 var(--espaco-p) var(--espaco-p); }
+ul { padding-left: var(--espaco-g); }
+
+/* --- Cabeçalho --- */
+header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: var(--cor-superficie);
+    z-index: 90;
+    box-shadow: var(--sombra-card);
+}
+/* ... (resto do header sem mudanças) ... */
+header .caixa-destaque {
+    padding: var(--espaco-p) var(--espaco-m);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .caixa-destaque img {
+    height: 80px; 
+    width: auto;
+}
+
+/* --- Banner Responsivo --- */
+.Banner img {
+    width: 100%;     
+    height: 400px;   
+    object-fit: cover;
+    object-position: center; 
+}
+@media (max-width: 768px) {
+    .Banner img { height: 250px; }
+}
+
+/* --- Menu Hambúrguer (Mobile) --- */
+#btn-hamburger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--espaco-pp);
+    display: block;
+}
+#btn-hamburger .linha {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--cor-texto-principal);
+    margin: 5px 0;
+    transition: var(--transicao-rapida);
+}
+#btn-fechar {
+    position: absolute;
+    top: var(--espaco-p);
+    right: var(--espaco-m);
+    background: none;
+    border: none;
+    color: var(--cor-branco-puro);
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+}
+#btn-fechar:hover { color: var(--cor-borda); }
+
+/* --- Navegação Mobile (Menu Lateral) --- */
+#nav-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: var(--cor-primaria);
+    padding: var(--espaco-m);
+    box-sizing: border-box;
+    transform: translateX(-100%);
+    transition: transform var(--transicao-rapida);
+    z-index: 100;
+}
+#nav-menu.aberto { transform: translateX(0); }
+#nav-menu ul { list-style: none; padding: 0; margin: 0; margin-top: var(--espaco-xg); }
+#nav-menu li { position: relative; }
+#nav-menu li a {
+    text-decoration: none;
+    color: var(--cor-branco-puro);
+    display: block;
+    padding: var(--espaco-p);
+    font-size: var(--fonte-tam-h3);
+    border-radius: var(--raio-borda);
+    transition: var(--transicao-rapida);
+}
+#nav-menu li a:hover { background-color: rgba(255, 255, 255, 0.1); }
+
+/* --- Componente: Card (.caixa-destaque) --- */
+.caixa-destaque {
+    background-color: var(--cor-superficie); 
+    border-radius: var(--raio-borda);
+    margin-bottom: var(--espaco-m); 
+    padding: var(--espaco-m);
+    box-shadow: var(--sombra-card); 
+    width: 100%; 
+    box-sizing: border-box; 
+}
+
+/* --- Componente: Imagem Responsiva --- */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--raio-borda);
+    margin: 0 auto var(--espaco-m); 
+}
+
+/* --- Componente: Botão (com estados) --- */
+/* Estilizando <a> como botão */
+.botao {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco-puro);
+    padding: var(--espaco-p) var(--espaco-m);
+    border: none;
+    border-radius: var(--raio-borda);
+    text-decoration: none;
+    font-size: var(--fonte-tam-base);
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: var(--espaco-p);
+    transition: var(--transicao-rapida);
+}
+.botao:hover {
+    background-color: #c00; 
+    transform: translateY(-2px); 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.botao:focus {
+    outline: 2px solid var(--cor-primaria);
+    outline-offset: 2px;
+}
+.botao:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* --- Componente: Formulário (com validação visual) --- */
+
+form { text-align: left; }
+form label {
+    display: block;
+    margin-top: var(--espaco-m);
+    font-weight: bold;
+    color: var(--cor-texto-principal);
+    margin-bottom: var(--espaco-pp);
+}
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form input[type="date"],
+form input[type="number"],
+form select {
+    width: 100%;
+    padding: var(--espaco-p);
+    margin-top: var(--espaco-pp);
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    box-sizing: border-box; 
+    font-size: var(--fonte-tam-base);
+    transition: var(--transicao-rapida);
+    background-color: var(--cor-superficie); /* Para modo escuro */
+    color: var(--cor-texto-principal); /* Para modo escuro */
+}
+
+/* --- CORREÇÃO DE BUG (JS vs CSS) --- */
+/* Validação Visual: Borda verde quando válido */
+form input.valid,
+form select.valid {
+    border-color: var(--cor-validacao-sucesso);
+}
+
+/* Validação Visual: Borda vermelha quando inválido */
+form input.invalid,
+form select.invalid {
+    border-color: var(--cor-validacao-erro);
+}
+
+/* --- CORREÇÃO DE BUG (Estilo de erro faltando) --- */
+.error-message {
+    display: none; /* Escondido por padrão */
+    color: var(--cor-validacao-erro);
+    font-size: var(--fonte-tam-pequena);
+    margin-top: var(--espaco-pp);
+}
+.error-message.visivel {
+    display: block; /* JS torna visível */
+}
+
+
+form input[type="submit"] {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco-puro);
+    padding: var(--espaco-p) var(--espaco-m);
+    border: none;
+    border-radius: var(--raio-borda);
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: var(--espaco-g);
+    width: 100%;
+    transition: var(--transicao-rapida);
+}
+form input[type="submit"]:hover { background-color: #004a9a; }
+
+/* Adiciona estilo para fieldset/legend */
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+fieldset.caixa-destaque {
+    border: 1px solid var(--cor-borda);
+    padding-top: var(--espaco-p);
+}
+legend {
+    padding: 0 var(--espaco-pp);
+    margin-left: var(--espaco-p);
+}
+
+
+/* --- Rodapé --- */
+footer {
+    text-align: center;
+    margin-top: var(--espaco-g);
+    padding-bottom: var(--espaco-m);
+    font-size: var(--fonte-tam-pequena);
+    /* CORRIGIDO: Contraste 3.84:1 (Reprovado) */
+    /* color: var(--cor-texto-secundario); */
+    /* CORRIGIDO: Contraste 13.57:1 (Aprovado) */
+    color: var(--cor-texto-principal);
+}
+
+
+/* ... (Grid System .container, .row, .col-* - sem mudanças) ... */
+.container {
+    width: 100%;
+    padding-left: var(--espaco-m);  /* 24px */
+    padding-right: var(--espaco-m); /* 24px */
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(-1 * var(--espaco-p)); /* -16px */
+    margin-right: calc(-1 * var(--espaco-p)); /* -16px */
+}
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, 
+.col-7, .col-8, .col-9, .col-10, .col-11, .col-12 {
+    width: 100%;
+    padding-left: var(--espaco-p);  /* 16px */
+    padding-right: var(--espaco-p); /* 16px */
+    box-sizing: border-box;
+}
+/* Breakpoints (sm, md, lg, xl, xxl) */
+@media (min-width: 576px) {
+    .container { max-width: 540px; }
+    .col-sm-1  { flex: 0 0 8.333333%;  max-width: 8.333333%;  }
+    .col-sm-2  { flex: 0 0 16.666667%; max-width: 16.666667%; }
+    .col-sm-3  { flex: 0 0 25%;         max-width: 25%;         }
+    .col-sm-4  { flex: 0 0 33.333333%; max-width: 33.333333%; }
+    .col-sm-5  { flex: 0 0 41.666667%; max-width: 41.666667%; }
+    .col-sm-6  { flex: 0 0 50%;         max-width: 50%;         }
+    .col-sm-7  { flex: 0 0 58.333333%; max-width: 58.333333%; }
+    .col-sm-8  { flex: 0 0 66.666667%; max-width: 66.666667%; }
+    .col-sm-9  { flex: 0 0 75%;         max-width: 75%;         }
+    .col-sm-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+    .col-sm-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+    .col-sm-12 { flex: 0 0 100%;        max-width: 100%;        }
+}
+@media (min-width: 768px) {
+    .container { max-width: 720px; }
+    .col-md-1  { flex: 0 0 8.333333%;  max-width: 8.333333%;  }
+    .col-md-2  { flex: 0 0 16.666667%; max-width: 16.666667%; }
+    .col-md-3  { flex: 0 0 25%;         max-width: 25%;         }
+    .col-md-4  { flex: 0 0 33.333333%; max-width: 33.333333%; }
+    .col-md-5  { flex: 0 0 41.666667%; max-width: 41.666667%; }
+    .col-md-6  { flex: 0 0 50%;         max-width: 50%;         }
+    .col-md-7  { flex: 0 0 58.333333%; max-width: 58.333333%; }
+    .col-md-8  { flex: 0 0 66.666667%; max-width: 66.666667%; }
+    .col-md-9  { flex: 0 0 75%;         max-width: 75%;         }
+    .col-md-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+    .col-md-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+    .col-md-12 { flex: 0 0 100%;        max-width: 100%;        }
+
+    /* Menu Desktop */
+    #btn-hamburger,
+    #btn-fechar { display: none; }
+    #nav-menu {
+        position: static;
+        transform: none;
+        height: auto;
+        width: auto;
+        background-color: transparent;
+        padding: 0;
+    }
+    #nav-menu ul { display: flex; gap: var(--espaco-m); margin-top: 0; }
+    #nav-menu li a {
+        color: var(--cor-primaria);
+        font-weight: bold;
+        padding: var(--espaco-pp) var(--espaco-p);
+        font-size: var(--fonte-tam-base);
+    }
+    #nav-menu li a:hover {
+        background-color: var(--cor-fundo);
+        border-radius: var(--raio-borda);
+    }
+}
+@media (min-width: 992px) {
+    .container { max-width: 960px; }
+    .col-lg-1  { flex: 0 0 8.333333%;  max-width: 8.333333%;  }
+    .col-lg-2  { flex: 0 0 16.666667%; max-width: 16.666667%; }
+    .col-lg-3  { flex: 0 0 25%;         max-width: 25%;         }
+    .col-lg-4  { flex: 0 0 33.333333%; max-width: 33.333333%; }
+    .col-lg-5  { flex: 0 0 41.666667%; max-width: 41.666667%; }
+    .col-lg-6  { flex: 0 0 50%;         max-width: 50%;         }
+    .col-lg-7  { flex: 0 0 58.333333%; max-width: 58.333333%; }
+    .col-lg-8  { flex: 0 0 66.666667%; max-width: 66.666667%; }
+    .col-lg-9  { flex: 0 0 75%;         max-width: 75%;         }
+    .col-lg-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+    .col-lg-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+    .col-lg-12 { flex: 0 0 100%;        max-width: 100%;        }
+}
+@media (min-width: 1200px) {
+    .container { max-width: 1140px; }
+    .col-xl-1  { flex: 0 0 8.333333%;  max-width: 8.333333%;  }
+    .col-xl-2  { flex: 0 0 16.666667%; max-width: 16.666667%; }
+    .col-xl-3  { flex: 0 0 25%;         max-width: 25%;         }
+    .col-xl-4  { flex: 0 0 33.333333%; max-width: 33.333333%; }
+    .col-xl-5  { flex: 0 0 41.666667%; max-width: 41.666667%; }
+    .col-xl-6  { flex: 0 0 50%;         max-width: 50%;         }
+    .col-xl-7  { flex: 0 0 58.333333%; max-width: 58.333333%; }
+    .col-xl-8  { flex: 0 0 66.666667%; max-width: 66.666667%; }
+    .col-xl-9  { flex: 0 0 75%;         max-width: 75%;         }
+    .col-xl-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+    .col-xl-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+    .col-xl-12 { flex: 0 0 100%;        max-width: 100%;        }
+}
+@media (min-width: 1400px) {
+    .container { max-width: 1320px; }
+    /* ... (col-xxl-* sem mudanças) ... */
+    .col-xxl-1  { flex: 0 0 8.333333%;  max-width: 8.333333%;  }
+    .col-xxl-2  { flex: 0 0 16.666667%; max-width: 16.666667%; }
+    .col-xxl-3  { flex: 0 0 25%;         max-width: 25%;         }
+    .col-xxl-4  { flex: 0 0 33.333333%; max-width: 33.333333%; }
+    .col-xxl-5  { flex: 0 0 41.666667%; max-width: 41.666667%; }
+    .col-xxl-6  { flex: 0 0 50%;         max-width: 50%;         }
+    .col-xxl-7  { flex: 0 0 58.333333%; max-width: 58.333333%; }
+    .col-xxl-8  { flex: 0 0 66.666667%; max-width: 66.666667%; }
+    .col-xxl-9  { flex: 0 0 75%;         max-width: 75%;         }
+    .col-xxl-10 { flex: 0 0 83.333333%; max-width: 83.333333%; }
+    .col-xxl-11 { flex: 0 0 91.666667%; max-width: 91.666667%; }
+    .col-xxl-12 { flex: 0 0 100%;        max-width: 100%;        }
+}
+
+
+/* --- 3.1 Componente: Dropdown (Submenu) --- */
+.seta-dropdown { display: none; }
+.submenu {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+/* Estilos do Dropdown no Desktop (hover) */
+@media (min-width: 768px) {
+    .submenu {
+        position: absolute;
+        top: 100%; 
+        left: 0;
+        background-color: var(--cor-superficie);
+        min-width: 200px;
+        box-shadow: var(--sombra-card);
+        border-radius: var(--raio-borda);
+        z-index: 110;
+        padding: var(--espaco-pp) 0;
+    }
+    #nav-menu li:hover > .submenu { display: block; }
+    .submenu li a {
+        color: var(--cor-primaria);
+        padding: var(--espaco-pp) var(--espaco-p);
+        font-size: var(--fonte-tam-pequena);
+        font-weight: normal;
+    }
+    .submenu li a:hover { background-color: var(--cor-fundo); }
+}
+/* Estilos do Dropdown no Mobile (click) */
+@media (max-width: 767px) {
+    .seta-dropdown {
+        display: block;
+        position: absolute;
+        right: var(--espaco-p);
+        top: var(--espaco-p);
+        color: var(--cor-branco-puro);
+        font-size: var(--fonte-tam-base);
+        cursor: pointer;
+    }
+    .submenu {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.2); 
+        padding-left: var(--espaco-p);
+    }
+    /* Classe .submenu-aberto (controlada por JS) mostra o menu */
+    .submenu-aberto > .submenu { display: block; }
+    .submenu li a {
+        font-size: var(--fonte-tam-base); 
+        padding: var(--espaco-pp) var(--espaco-p);
+    }
+}
+
+
+/* --- 3.2 Componente: Badges (Etiquetas) --- */
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.6em; 
+    font-size: var(--fonte-tam-pequena);
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: var(--raio-borda);
+    margin-left: var(--espaco-pp);
+}
+.badge-primario {
+    color: var(--cor-branco-puro);
+    background-color: var(--cor-primaria);
+}
+.badge-secundario {
+    color: var(--cor-branco-puro);
+    background-color: var(--cor-secundaria);
+}
+
+/* --- 3.3 Componente: Feedback (Alert e Modal) --- */
+/* Alert (Aviso) */
+.alert {
+    padding: var(--espaco-p) var(--espaco-m);
+    margin-bottom: var(--espaco-m);
+    border: 1px solid transparent;
+    border-radius: var(--raio-borda);
+}
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+/* Modal (Popup) */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.modal.aberto { display: block; }
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1001;
+}
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--cor-superficie);
+    padding: var(--espaco-g);
+    border-radius: var(--raio-borda);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    z-index: 1002;
+    width: 90%;
+    max-width: 500px;
+}
+.modal-fechar {
+    position: absolute;
+    top: var(--espaco-p);
+    right: var(--espaco-p);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--cor-borda);
+    cursor: pointer;
+    line-height: 1;
+}
+.modal-fechar:hover { color: var(--cor-texto-principal); }

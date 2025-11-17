@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos - Ong Corrente do Bem</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <div class="caixa-destaque">
+            <picture>
+                <source srcset="Imagens/logo.webp" type="image/webp">
+                <img src="Imagens/logo.png" alt="Logo da Ong Corrente do Bem" width="200" height="200">
+            </picture>
+            <button id="btn-hamburger" aria-controls="nav-menu" aria-expanded="false" aria-label="Abrir menu de navegação">
+                <span class="linha"></span>
+                <span class="linha"></span>
+                <span class="linha"></span>
+            </button>
+            <nav id="nav-menu" aria-hidden="true">
+                <button id="btn-fechar" aria-label="Fechar menu de navegação">&times;</button>
+                <ul>
+                    <li><a href="index.html" class="nav-link-spa">Inicio</a></li>
+                    
+                    <li>
+                        <a href="Projetos.html" class="nav-link-spa" aria-haspopup="true" aria-expanded="false">Projetos</a>
+                        <span class="seta-dropdown" aria-hidden="true">▼</span> 
+                        <ul class="submenu" aria-hidden="true">
+                            <li><a href="Projetos.html#educacao">Educação</a></li>
+                            <li><a href="Projetos.html#cozinha">Cozinha</a></li>
+                            <li><a href="Projetos.html#capacitacao">Capacitação</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="cadastro.html" class="nav-link-spa">Cadastro</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="Banner">
+        <picture>
+            <source srcset="Imagens/banner2.webp" type="image/webp">
+            <img src="Imagens/banner2.png" alt="Banner da Ong Corrente do Bem">
+        </picture>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <section class="caixa-destaque">
+                        <h1>Nossos Projetos e Como Ajudar</h1>
+                        <p>Na Corrente do Bem, cada projeto é uma promessa de um futuro melhor. 
+                Atuamos diretamente em nossa comunidade com programas de reforço escolar, capacitação profissional e apoio direto a famílias em vulnerabilidade. 
+                Nosso foco é criar oportunidades reais para crianças, jovens e adultos.</p>
+                    </section>
+                </div>
+            </div>
+
+            <div class="row" id="projetos-container">
+                <div class="col-12">
+                    <p>Carregando projetos...</p>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <section class="caixa-destaque">
+                        <h2>Doe para Fazer a Diferença</h2>
+                        <p>Cada doação, não importa o valor, é um elo que fortalece nossa corrente. Sua contribuição nos permite continuar oferecendo refeições quentes,
+                 aulas de reforço e cursos profissionalizantes. Você tem o poder de transformar vidas. Faça a diferença hoje!</p>
+                        <button class="botao" data-modal-alvo="#modal-doacao">Faça sua Doação</button>
+                    </section>
+                </div>
+                <div class="col-12 col-md-6">
+                    <section class="caixa-destaque">
+                        <picture>
+                            <source srcset="Imagens/doaçao.webp" type="image/webp">
+                            <img src="Imagens/doaçao.png" alt="Imagem representando doação" width="500" height="400">
+                        </picture>
+                    </section>
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-12">
+                    <section class="caixa-destaque">
+                        <h2>Métodos de Doação</h2>
+                        <ul>
+                            <li>Transferência Bancária</li>
+                            <li>Cartão de Crédito/Débito</li>
+                            <li>PIX</li>
+                            <li>Doação de Itens</li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+
+        </div> 
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Ong Corrente do Bem. Todos os direitos reservados.</p>
+            <p>Feito por Gabriel Alves</p>
+        </div>
+    </footer>
+
+    <div class="modal" id="modal-doacao" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-doacao" aria-hidden="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-fechar" aria-label="Fechar modal">&times;</button>
+            <h2 id="modal-titulo-doacao">Faça a Diferença</h2>
+            <p>Sua contribuição é fundamental para mantermos nossos projetos ativos. Ao clicar no botão abaixo, você será redirecionado para nossa página de cadastro seguro.</p>
+            <a href="cadastro.html" class="botao nav-link-spa">Ir para o Cadastro</a>
+        </div>
+    </div>
+
+    <script src="Launch.js"></script>
+</body>
+</html>
