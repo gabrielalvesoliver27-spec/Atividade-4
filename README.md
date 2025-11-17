@@ -1,62 +1,42 @@
-Projeto Website - ONG Corrente do Bem (Versão SPA Avançada)
-Este repositório contém o código-fonte de um site completo, responsivo e de alta performance para a "ONG Corrente do Bem".
+# ONG Corrente do Bem – Atividade 4 (Entrega Final)
 
-Este projeto foi construído do zero, sem o uso de frameworks (como React ou Bootstrap), para demonstrar uma arquitetura front-end robusta usando apenas tecnologias web puras. O site funciona como uma Single Page Application (SPA), onde a navegação é instantânea e o conteúdo da página é carregado dinamicamente.
+---
 
-🚀 Destaques Técnicos
-Este projeto vai além de um simples site estático; é um sistema front-end coeso que demonstra vários conceitos avançados:
+## Objetivo
+Entrega final do projeto, consolidando práticas profissionais de desenvolvimento web. O foco foi a criação de uma **Single Page Application (SPA)** robusta, um **Design System** completo e a implementação de diretrizes de **Acessibilidade (WCAG)** e **Otimização**, tudo com JavaScript, CSS e HTML puros.
 
-1. Roteador SPA (Single Page Application)
-O launch.js implementa um roteador SPA completo em JavaScript puro:
+---
 
-Navegação Instantânea: Intercepta cliques nos links (.nav-link-spa) e usa fetch() para buscar o HTML da página de destino.
+## Deploy e Estrutura
+- Repositório público hospedado no GitHub (GitHub Pages):  
+  https://gabrielalvesoliver27-spec.github.io/Atividade-4/
 
-DOM Dinâmico: Utiliza DOMParser() para extrair o <main> e o <title> da página buscada e os injeta no DOM atual, sem recarregar a página.
+- Branch principal: `main`  
+- Versão atual: **v4.0.0**
 
-Histórico do Navegador: Gerencia o histórico de navegação com history.pushState e o evento popstate, permitindo que os botões "voltar" e "avançar" do navegador funcionem perfeitamente.
+---
 
-Ciclo de Vida: Possui uma função initPaginaAtual() que "reinicializa" os scripts necessários (como validação de formulário ou renderização de templates) toda vez que um novo conteúdo é carregado.
+## Requisitos e Destaques Técnicos
 
-2. Design System & Grid System (styles.css)
-O styles.css foi estruturado como um "framework" interno:
+### 1. Arquitetura SPA (Single Page Application)
+- **Roteador SPA** completo em JavaScript puro (`launch.js`) que intercepta links e atualiza o DOM.
+- Navegação instantânea sem recarregar a página, usando `fetch()` para buscar conteúdo.
+- Gerenciamento do histórico do navegador com `history.pushState` e `popstate` (botões de voltar/avançar).
+- **Sistema de Templates** dinâmico (`renderizarProjetos`) que gera o HTML a partir de um array de dados.
 
-Design System: Define toda a base visual do projeto (paleta de cores, tipografia, espaçamento, sombras) usando Variáveis CSS (:root).
+### 2. Design System & Grid System (CSS)
+- **Design System** completo (`styles.css`) baseado em Variáveis CSS (`:root`) para cores, tipografia e espaçamento.
+- **Grid System** de 12 colunas, responsivo e "mobile-first", construído do zero com Flexbox.
+- Suporte nativo a **Modo Escuro (Dark Mode)** (`prefers-color-scheme: dark`).
+- Componentização de UI (Modals, Alerts, Badges, Botões) com estados definidos.
 
-Modo Escuro (Dark Mode): Suporte nativo a modo escuro usando a media query (prefers-color-scheme: dark).
+### 3. Acessibilidade (WCAG 2.1 Nível AA)
+- **Navegação completa por teclado** garantida em todos os elementos interativos.
+- **Gerenciamento de Foco** ativo: o foco é movido para o Modal/Menu ao abrir e devolvido ao gatilho ao fechar.
+- **Uso extensivo de ARIA** (`aria-expanded`, `aria-hidden`, `aria-modal`, `role="alert"`) para componentes dinâmicos.
+- Contraste de cores corrigido e validado (mínimo de 4.5:1).
+- Estrutura HTML 100% semântica (`<main>`, `<nav>`, `<article>`, `<fieldset>`).
 
-Grid System Próprio: Um sistema de grid de 12 colunas, "mobile-first" e totalmente responsivo, construído com Flexbox. Ele suporta 5 breakpoints (sm, md, lg, xl, xxl) para layouts complexos.
-
-3. Componentes Reutilizáveis (JS + CSS)
-O projeto é construído com componentes interativos e reutilizáveis:
-
-Menu Responsivo (com Dropdown): Um menu hambúrguer para mobile que se transforma em um menu desktop. O submenu "Projetos" funciona com clique no mobile e com hover no desktop.
-
-Modal (Popup): Um componente de modal genérico, ativado por atributos data-modal-alvo, usado para a chamada de doação.
-
-Sistema de Templates: A página Projetos.html é renderizada dinamicamente. Um array projetosData no launch.js é usado pela função renderizarProjetos para gerar os cards de projeto.
-
-Componentes de UI: Inclui outros componentes como Alert, Badge e Button com estados definidos.
-
-4. Validação de Formulário Avançada
-O cadastro.html usa um sistema de validação robusto em JavaScript:
-
-O novalidate no HTML desativa a validação do navegador, passando o controle para o JS.
-
-Scripts verificam campos obrigatórios e formatos específicos (Email e CPF) via Regex.
-
-Fornece feedback visual instantâneo ao usuário, alternando classes .valid/.invalid (CSS) e exibindo mensagens de erro (.error-message.visivel).
-
-5. Foco em Acessibilidade (A11y)
-Um esforço consciente foi feito para tornar o site acessível:
-
-HTML Semântico: Uso correto de tags como <main>, <nav>, <article>, <fieldset>.
-
-ARIA (Accessible Rich Internet Applications): Uso extensivo de atributos ARIA para componentes dinâmicos, como aria-expanded, aria-controls, aria-hidden, aria-modal e role="alert".
-
-Gerenciamento de Foco: O JavaScript gerencia ativamente o foco do usuário. Por exemplo, ao abrir um modal ou o menu, o foco é movido para dentro do componente e, ao fechar, ele retorna para o elemento que o acionou.
-
-Contraste de Cores: O CSS foi corrigido para garantir um contraste de cores acessível, conforme anotado no próprio arquivo (CORRIGIDO: Contraste...).
-
-
-
-Feito por Gabriel Alves.
+### 4. Validação e Otimização
+- **Validação de Formulário** avançada (client-side) com Regex para Email/CPF e feedback de erro em tempo real.
+- **Otimização de Imagens:** Uso da tag `<picture>` e formato `.webp` para performance.
