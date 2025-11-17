@@ -9,7 +9,7 @@ const projetosData = [
         titulo: "Educação para Todos",
         badgeTexto: "Educação",
         badgeClasse: "badge-primario",
-        imagem: "Imagens/educaçao para todos.png",
+        imagem: "Imagens/educaçao para todos.webp",
         descricao: "Acreditamos que o talento está em toda parte, mas as oportunidades não. Este projeto existe para mudar isso. Oferecemos reforço escolar e atividades extracurriculares que vão além do básico, ajudando crianças e adolescentes a descobrir seu potencial e construir um futuro brilhante."
     },
     {
@@ -17,7 +17,7 @@ const projetosData = [
         titulo: "Cozinha Comunitária",
         badgeTexto: "Alimentação",
         badgeClasse: "badge-secundario",
-        imagem: "Imagens/cozinha comunitaria.png",
+        imagem: "Imagens/cozinha comunitaria.webp",
         descricao: "Nenhum prato deve ficar vazio. Este é o lema da nossa Cozinha Comunitária, que atua na linha de frente contra a fome. Diariamente, distribuímos refeições nutritivas, levando segurança alimentar e esperança para pessoas em situação de rua e famílias em vulnerabilidade."
     },
     {
@@ -25,14 +25,14 @@ const projetosData = [
         titulo: "Capacitação Profissional",
         badgeTexto: "Emprego",
         badgeClasse: "badge-primario",
-        imagem: "Imagens/capacitaçao profissional.png",
+        imagem: "Imagens/capacitaçao profissional.webp",
         descricao: "Mudar a própria história começa com uma oportunidade. Oferecemos cursos e workshops desenhados para empoderar jovens e adultos, dando-lhes a confiança e as habilidades para conquistar seu espaço no mercado de trabalho. Nosso foco é a autonomia financeira, o primeiro passo para uma vida com mais escolhas."
     }
 ];
 
 
 /* ===============================================
---- FUNÇÃO PRINCIPAL (ROTEADOR SPA) ---
+--- FUNÇÃO PRINCIPAL  ---
 =============================================== */
 
 // Salva o elemento que abriu o modal, para devolver o foco

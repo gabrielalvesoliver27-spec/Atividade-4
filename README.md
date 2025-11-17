@@ -57,21 +57,6 @@ Gerenciamento de Foco: O JavaScript gerencia ativamente o foco do usuário. Por 
 
 Contraste de Cores: O CSS foi corrigido para garantir um contraste de cores acessível, conforme anotado no próprio arquivo (CORRIGIDO: Contraste...).
 
-💻 Como Visualizar o Projeto
-Importante: Este projeto é uma SPA e usa fetch() para carregar arquivos HTML. Devido às políticas de segurança (CORS) dos navegadores, ele não funcionará se você apenas abrir o index.html diretamente do seu computador.
 
-Ele precisa ser executado a partir de um servidor local.
-
-A forma mais fácil de fazer isso é:
-
-Abra a pasta do projeto no Visual Studio Code.
-
-Instale a extensão Live Server.
-
-Clique com o botão direito no arquivo index.html.
-
-Selecione "Open with Live Server".
-
-Isso iniciará um servidor local e abrirá o projeto no seu navegador, permitindo que o roteador SPA funcione corretamente.
 
 Feito por Gabriel Alves.
